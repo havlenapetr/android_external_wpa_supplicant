@@ -478,9 +478,10 @@ wpa_supplicant_select_bss(struct wpa_supplicant *wpa_s, struct wpa_ssid *group,
 				continue;
 			}
 
-			if (bss->caps & IEEE80211_CAP_IBSS) {
+			if ((bss->caps & IEEE80211_CAP_IBSS) &&
+					ssid->mode != IEEE80211_MODE_IBSS) {
 				wpa_printf(MSG_DEBUG, "   skip - "
-					   "IBSS (adhoc) network");
+					   "IBSS (adhoc) network mode mismatch");
 				continue;
 			}
 
